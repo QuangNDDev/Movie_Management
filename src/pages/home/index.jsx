@@ -7,12 +7,27 @@ function HomePage() {
     <div>
       <Header />
       <Carousel numberOfSlide={1} category={"Trending"} />
-      <h1 style={{ color: "white" }}>Horror Movie</h1>
-      <Carousel numberOfSlide={6} category={"Horror"} />
-      <h1 style={{ color: "white" }}>Comedy Movie</h1>
-      <Carousel numberOfSlide={6} category={"Comedy"} />
-      <h1 style={{ color: "white" }}>Action Movie</h1>
-      <Carousel numberOfSlide={6} category={"Action"} />
+
+      <Carousel
+        numberOfSlide={6}
+        category={"Horror"}
+        isUseNavigation
+        title={"Horror Movie"}
+      />
+
+      <Carousel
+        numberOfSlide={6}
+        category={"Comedy"}
+        isUseNavigation
+        title={"Comedy Movie"}
+      />
+
+      <Carousel
+        numberOfSlide={6}
+        category={"Action"}
+        isUseNavigation
+        title={"Action Movie"}
+      />
     </div>
   );
 }
