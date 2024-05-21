@@ -35,7 +35,7 @@ export default function Carousel({
 
   useEffect(() => {
     fetchMovie();
-  });
+  }, []);
   return (
     <div className={`carousel ${numberOfSlide > 1 ? "multi-item" : ""}`}>
       {/*chi show title khi va chi khi co title => neu title === null => thi ko show title */}
