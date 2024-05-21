@@ -22,6 +22,7 @@ export default function Carousel({
   category,
   isUseNavigation = false,
   title,
+  autoplay = false,
 }) {
   const [movies, setMovies] = useState([]);
   async function fetchMovie() {
@@ -50,7 +51,11 @@ export default function Carousel({
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination, Autoplay, Navigation]}
+        modules={
+          autoplay
+            ? [Pagination, Autoplay, Navigation]
+            : [Pagination, Navigation]
+        }
       >
         {movies
           .filter((movie) => movie.category === category)

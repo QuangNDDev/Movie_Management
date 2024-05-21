@@ -6,7 +6,7 @@ function HomePage() {
   return (
     <div>
       <Header />
-      <Carousel numberOfSlide={1} category={"Trending"} />
+      <Carousel numberOfSlide={1} category={"Trending"} autoplay />
 
       <Carousel
         numberOfSlide={6}
