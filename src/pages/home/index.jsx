@@ -5,7 +5,6 @@ import Carousel from "../../components/carousel";
 function HomePage() {
   return (
     <div>
-      <Header />
       <Carousel numberOfSlide={1} category={"Trending"} autoplay />
 
       <Carousel

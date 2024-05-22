@@ -4,6 +4,7 @@ import {
   Image,
   Input,
   Modal,
+  Popconfirm,
   Select,
   Table,
   Tooltip,
@@ -14,6 +15,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "antd/es/form/Form";
 import uploadFile from "../../utils/upload";
+import "./index.scss";
 
 function MovieManagementPractice() {
   const [visible, setVisible] = useState(false);
@@ -57,22 +59,26 @@ function MovieManagementPractice() {
     form.resetFields();
   }
 
+  async function handleDelete(id) {
+    const response = await axios.delete(
+      `https://662a451467df268010a33ecb.mockapi.io/Movie/${id}`
+    );
+    console.log(response.data);
+    const listMovieAfter = setMovies(movies.filter((movie) => movie.id !== id));
+    setMovies(listMovieAfter);
+  }
+
   const columns = [
-    {
-      title: "#",
-      dataIndex: "id",
-      key: "id",
-    },
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    //   key: "description",
+    // },
     {
       title: "Category",
       dataIndex: "category",
@@ -93,6 +99,24 @@ function MovieManagementPractice() {
       dataIndex: "poster_path",
       key: "poster_path",
       render: (value) => <Image src={value} width={120} />,
+    },
+    {
+      title: "Action",
+      dataIndex: "id",
+      key: "id",
+      render: (id) => (
+        <Popconfirm
+          title="Delete the movie"
+          description="Are you sure to delete this movie?"
+          onConfirm={() => handleDelete(id)}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Button danger type="primary">
+            Delete
+          </Button>
+        </Popconfirm>
+      ),
     },
   ];
 
@@ -136,7 +160,7 @@ function MovieManagementPractice() {
   );
 
   return (
-    <div>
+    <div className="movie-management">
       <Tooltip title={"Click to add movie"}>
         <Button
           style={{ fontWeight: "bold" }}
@@ -260,7 +284,7 @@ function MovieManagementPractice() {
           src={previewImage}
         />
       )}
-      <Table dataSource={movies} columns={columns} />
+      <Table dataSource={movies} columns={columns} bordered />
     </div>
   );
 }

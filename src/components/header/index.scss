@@ -28,4 +28,27 @@
       }
     }
   }
+  &__search {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 15px 350px;
+    display: flex;
+    transition: all 0.3s;
+    opacity: 0;
+    z-index: 1;
+
+    input {
+      border: none;
+      outline: none;
+      flex-grow: 1;
+      font-size: 20px;
+    }
+    &.active {
+      top: 100%;
+      opacity: 1;
+    }
+  }
 }
